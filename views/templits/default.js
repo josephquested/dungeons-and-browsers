@@ -1,6 +1,5 @@
-module.exports = (body) => {
+module.exports = (data) => {
   return `
-    <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
@@ -9,7 +8,8 @@ module.exports = (body) => {
         <title>templit app</title>
       </head>
       <body>
-        ${body}
+        ${data}
+        <script src="bundle.js"></script>
       </body>
     </html>
   `

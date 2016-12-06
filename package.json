@@ -20,6 +20,7 @@
   "dependencies": {
     "clone": "^2.1.0",
     "express": "^4.14.0",
+    "html-stash": "^1.0.1",
     "morphdom": "^2.2.1",
     "nodemon": "^1.11.0",
     "redux": "^3.6.0",

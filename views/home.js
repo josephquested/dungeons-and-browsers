@@ -1,7 +1,6 @@
 function render (data) {
   return `
-    <main></main>
-    <script src="bundle.js"></script>
+    <h1> home.js </h1>
   `
 }
 

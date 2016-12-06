@@ -1,20 +1,11 @@
-var redux = require('redux')
-var morphdom = require('morphdom')
-var reducer = require('./reducer')
+var route = window.location.pathname.substr(1)
 
-var app = document.createElement('div')
-document.querySelector('main').appendChild(app)
+switch (route) {
+  case 'create':
+    return require('./pages/create')()
+    break
 
-var initialState = {}
-
-var store = redux.createStore(reducer, initialState)
-store.subscribe(() => {
-  var view = render(store.getState(), store.dispatch)
-  morphdom(app, view)
-})
-
-function render (state, dispatch) {
-  return require('./router')(state, store.dispatch)
+  default:
+    return require('./pages/home')()
 }
-
-store.dispatch({type: 'INIT'})
+    
