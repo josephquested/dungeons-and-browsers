@@ -1,6 +1,21 @@
+var header = require('./partials/header')
+var generateBoard = require('./partials/empty-board')
+
 function render (data) {
   return `
-    <h1> create.js </h1>
+    ${header('create')}
+    <div id="main-wrapper">
+      ${generateBoard(12)}
+      <ul>
+        <li>thing</li>
+        <li>thing</li>
+        <li>thing</li>
+        <li>thing</li>
+        <li>thing</li>
+        <li>thing</li>
+      </ul>
+      <p>test</p>
+    </div>
   `
 }
 

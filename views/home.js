@@ -1,6 +1,8 @@
+var header = require('./partials/header')
+
 function render (data) {
   return `
-    <h1> home.js </h1>
+    ${header('home')}
   `
 }
 
