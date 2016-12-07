@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/create', (req, res) => {
-  res.render('create')
+app.get('/play', (req, res) => {
+  res.render('play')
 })
 
 app.listen(3000, () => {

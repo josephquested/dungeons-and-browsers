@@ -1,19 +1,37 @@
+/* --- general --- */
+
 * {
   font-family: 'Press Start 2P', cursive;
 }
 
 body {
   background-color: black;
-    color: white;
+  color: white;
 }
+
+h1 {
+  font-size: 18;
+}
+
+/* --- nav --- */
+
+span, a {
+  padding: 8px 30px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+#nav-devider {
+  margin-left: 70px;
+  margin-right: 40px;
+}
+
+/* --- table --- */
 
 table {
   margin-right: center;
   margin-left: center;
-}
-
-h1 {
-  margin: 0;
 }
 
 hr {
@@ -21,12 +39,34 @@ hr {
 }
 
 td {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   background-color: white;
 }
 
-/* ids */
+/* --- link --- */
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: white;
+}
+
+/* --- id --- */
 
 #main-wrapper {
   display: flex;

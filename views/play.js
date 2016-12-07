@@ -3,7 +3,7 @@ var generateBoard = require('./partials/empty-board')
 
 function render (data) {
   return `
-    ${header('create')}
+    ${header('play')}
     <div id="main-wrapper">
       ${generateBoard(12)}
       <ul>
