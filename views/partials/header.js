@@ -2,7 +2,7 @@ function render (current) {
   return `
   <div id="header">
     <span id="navs">
-      <h1>dungeons in browsers</h1>
+      <h1>DUNGEONS AND BROWSERS</h1>
       <h1 id="nav-devider">/</h1>
       ${renderNavs(current)}
     </span>
@@ -12,8 +12,8 @@ function render (current) {
 }
 
 function renderNavs (current) {
-  var navs = ['play', 'party', 'settings']
-  var html = `<a href="/">home</a>`
+  var navs = ['PLAY', 'PARTY', 'SETTINGS']
+  var html = `<a href="/">HOME</a>`
   navs.forEach((nav) => {
     html += `<a href="/${nav}">${nav}</a>`
   })
