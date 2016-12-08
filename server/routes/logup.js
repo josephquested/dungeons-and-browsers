@@ -1,6 +1,6 @@
 var router = require('express').Router()
-var hasher = require('../db/hasher')
-var db = require('../db/db')
+var hasher = require('../hasher')
+var db = require('../../db/db')
 
 router.post('/', (req, res) => {
   db.users.findByUsername(req.body.username, (user) => {
