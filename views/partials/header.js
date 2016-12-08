@@ -12,7 +12,7 @@ function render (current) {
 }
 
 function renderNavs (current) {
-  var navs = ['PLAY', 'PARTY', 'SETTINGS']
+  var navs = ['PLAY', 'PARTY', 'QUIT']
   var html = `<a href="/">HOME</a>`
   navs.forEach((nav) => {
     html += `<a href="/${nav}">${nav}</a>`

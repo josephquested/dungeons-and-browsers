@@ -51,11 +51,16 @@ app.get('/play', (req, res) => {
   res.render('play')
 })
 
+app.get('/quit', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/' }), (req, res) => { res.redirect('/') }
 )
 
-
+// --- listen --- //
 app.listen(3000, () => {
   console.log('DUNGEONS AND BROWSERS / PORT 3000')
 })
