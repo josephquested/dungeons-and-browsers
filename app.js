@@ -1,6 +1,7 @@
 // --- auth --- //
 var passport = require('passport')
 var Strategy = require('passport-local').Strategy
+var hasher = require('./db/hasher')
 
 var db = require('./db/db')
 
@@ -8,8 +9,10 @@ passport.use(new Strategy((username, password, cb) => {
   db.users.findByUsername(username, (err, user) => {
     if (err) return cb(err)
     if (!user) return cb(null, false)
-    if (user.password != password) return cb(null, false)
-    return cb(null, user)
+    hasher.checkHash(password, user.password, (valid) => {
+      if (valid) return cb(null, user)
+      return cb(null, false)
+    })
   })
 }))
 
@@ -55,6 +58,8 @@ app.get('/quit', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
+app.use('/logup', require('./routes/logup'))
 
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/' }), (req, res) => { res.redirect('/') }

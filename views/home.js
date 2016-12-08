@@ -20,9 +20,9 @@ function notAuthorized () {
     <div id="login-form">
       <h2>login</h2>
       <form action="/login" method="post">
-        <label>Username:</label>
+        <label>username:</label>
         <input type="text" name="username"/><br/>
-        <label>Password:</label>
+        <label>password:</label>
         <input type="password" name="password"/>
         <input type="submit" value="->"/>
       </form>
@@ -33,9 +33,9 @@ function notAuthorized () {
     <div id="logup-form">
       <h2>logup</h2>
       <form action="/logup" method="post">
-        <label>Username:</label>
+        <label>username:</label>
         <input type="text" name="username"/><br/>
-        <label>Password:</label>
+        <label>password:</label>
         <input type="password" name="password"/>
         <input type="submit" value="->"/>
       </form>

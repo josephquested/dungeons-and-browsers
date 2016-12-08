@@ -21,7 +21,7 @@ module.exports = {
     .then(res => callback(null, res[0]))
   },
 
-  addUser: (data, callback) => {
+  add: (data, callback) => {
     knex('users')
     .insert({ username: data.username, password: data.password })
     .then(res => callback(null, res))
