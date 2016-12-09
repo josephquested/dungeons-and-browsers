@@ -45,7 +45,7 @@ function notAuthorized () {
 
 function authorized (data) {
   return `
-    ${header('home')}
+    ${header()}
   `
 }
 

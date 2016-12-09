@@ -1,9 +1,9 @@
 var route = window.location.pathname.substr(1)
 
 switch (route) {
-  case 'PLAY':
+  case 'play':
     return require('./pages/play')()
-    break
+  break
 
   default:
     return require('./pages/home')()

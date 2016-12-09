@@ -1,6 +1,11 @@
 var router = require('express').Router()
-var passport = require('../passport')
 
-router.get('/', passport.authenticate('local', { failureRedirect: '/' }), (req, res) => res.render('play'))
+router.get('/', (req, res) => {
+  if (req.user) {
+    res.render('play')
+  } else {
+    res.redirect('/')
+  }
+})
 
 module.exports = router

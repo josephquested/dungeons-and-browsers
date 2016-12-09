@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
     if (!user) {
       hasher.hash(req.body.password, (hashedPassword) => {
         db.users.add({username: req.body.username, password: hashedPassword}, (dbRes) => {
-          res.redirect('/PLAY')
+          res.redirect('/')
         })
       })
     } else {
