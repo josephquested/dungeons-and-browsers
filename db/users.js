@@ -3,13 +3,8 @@ var config = require('./knexfile')[env]
 var knex = require('knex')(config)
 
 module.exports = {
-  findAll: (table, callback) => {
-    knex.raw('select * from users')
-    .then(res => callback(null, res))
-  },
-
+  
   findByUsername: (username, callback) => {
-    console.log('TRYING TO FIND USER: ', username)
     knex('users')
     .where('username', username)
     .then(res => callback(null, res[0]))
