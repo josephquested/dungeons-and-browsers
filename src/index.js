@@ -6,5 +6,5 @@ switch (route) {
   break
 
   default:
-    return require('./pages/home')()
+    return require('./pages/index')()
 }

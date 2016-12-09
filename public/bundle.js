@@ -17,7 +17,7 @@ switch (route) {
   break
 
   default:
-    return require('./pages/home')()
+    return require('./pages/index')()
 }
 
-},{"./pages/home":1,"./pages/play":2}]},{},[3]);
+},{"./pages/index":1,"./pages/play":2}]},{},[3]);
