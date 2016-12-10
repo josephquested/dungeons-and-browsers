@@ -5,7 +5,6 @@ function render (data) {
   return `
     ${header()}
     <h1 id='page-header'>party</h1>
-    <hr id='page-rule'>
     ${renderCharacters(data.characters)}
     ${renderEmptySlots(data.characters)}
   `
@@ -23,13 +22,13 @@ function renderCharacters (characters) {
 function renderCharacter (character) {
   var characterData = JSON.parse(character.data)
   var html = `
-  <div class="character-info">
+  <div class="character-container">
     <h2>${characterData.name}</h2>
     <h3> --- ${characterData.class} --- </h3>
     <h4>health: ${characterData.health}</h4>
     ${classSwitch(characterData)}
   `
-  return html += `<hr id='page-rule'></div>`
+  return html += `</div>`
 }
 
 function classSwitch (characterData) {
@@ -64,9 +63,8 @@ function renderEmptySlots (characters) {
 }
 
 var emptySlot = `
-  <div class="character-info">
+  <div class="character-container">
     <a href="/character">empty slot</a>
-    <hr id='page-rule'>
   </div>
 `
 
