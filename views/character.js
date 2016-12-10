@@ -19,6 +19,9 @@ function render (data) {
           <option value="theif">theif</option>
           <option value="priest">priest</option>
         </select>
+        <br>
+
+        <div id="character-stat-container"></div>
 
         <input type="submit" value="->"/>
       </form>
