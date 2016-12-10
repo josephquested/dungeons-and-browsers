@@ -5,6 +5,10 @@ switch (route) {
     return require('./pages/play')()
   break
 
+  case 'character':
+    return require('./pages/character')()
+  break
+
   default:
     return require('./pages/index')()
 }
