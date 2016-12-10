@@ -3,7 +3,7 @@ var generateBoard = require('./partials/empty-board')
 
 function render (data) {
   return `
-    ${header('play')}
+    ${header()}
     <h1 id='page-header'>party</h1>
     <hr id='page-rule'>
     ${renderCharacters(data.characters)}
@@ -65,7 +65,7 @@ function renderEmptySlots (characters) {
 
 var emptySlot = `
   <div class="character-info">
-    <h2>empty slot</h2>
+    <a href="/character">empty slot</a>
     <hr id='page-rule'>
   </div>
 `

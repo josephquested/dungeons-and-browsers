@@ -24,4 +24,9 @@ app.use('/play', require('./routes/play'))
 app.use('/party', require('./routes/party'))
 app.use('/logup', require('./routes/logup'))
 
+// app.get('/character', require('./routes/character'))
+app.get('/character', (req, res) => {
+  res.render("character")
+})
+
 module.exports = app
