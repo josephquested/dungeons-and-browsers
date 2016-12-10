@@ -3,10 +3,10 @@ var db = require('../../db/db')
 
 router.get('/', (req, res) => {
   if (req.user) {
-    db.characters.findByUserId(req.user.id, (err, res) => {
-      console.log("res from characters database", res)
+    db.characters.findByUserId(req.user.id, (err, characters) => {
+      console.log('res from characters database', characters)
+      res.render('party', { characters })
     })
-    res.render('party')
   } else {
     res.redirect('/')
   }
