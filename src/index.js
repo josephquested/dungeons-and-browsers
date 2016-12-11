@@ -6,7 +6,7 @@ switch (route) {
   break
 
   case 'character':
-    return require('./pages/character')()
+    return require('./pages/character/index')()
   break
 
   default:
