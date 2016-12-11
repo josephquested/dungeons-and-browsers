@@ -1,4 +1,4 @@
-var data = require('./data')
+var data = require('./classes')
 
 module.exports = (state, action) => {
   var newState = require('clone')(state)

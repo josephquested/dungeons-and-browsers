@@ -4,7 +4,6 @@ module.exports = (state, dispatch) => {
   return html`
     <div id="character-stat-container">
       ${standardStats()}
-      ${classSwitch()}
       ${bindListener()}
     </div>
   `
@@ -15,7 +14,10 @@ module.exports = (state, dispatch) => {
         <div id="standard-stats">
           <h2>health: ${state.class.health}</h2>
           <h2>stamina: ${state.class.stamina}</h2>
-          <input type="submit" value="->"/>
+          <h2>strength: ${state.class.strength}</h2>
+          <h2>speed: ${state.class.speed}</h2>
+          <br>
+          <input type="submit" value="create character"/>
         </div>
       `
     }

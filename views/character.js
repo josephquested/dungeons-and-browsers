@@ -8,6 +8,7 @@ function render (data) {
     <div>
       <h1 id='page-header'>create character</h1>
       <hr id='page-rule'>
+      <br>
 
       <div id="character-form">
         <form action="/character" method="post">
@@ -18,12 +19,12 @@ function render (data) {
             <option selected disabled value="class">class</option>
             <option value="warrior">warrior</option>
             <option value="mage">mage</option>
-            <option value="thief">theif</option>
             <option value="priest">priest</option>
+            <option value="thief">thief</option>
           </select>
-          <br>
+          <br><br>
 
-          <main></main>
+          <div id="character-stats"></div>
 
         </form>
       </div>

@@ -4685,36 +4685,32 @@ var warrior = {
   "name": "warrior",
   "health": 10,
   "stamina": 3,
-  "attack": 3,
-  "defence": 3,
+  "strength": 2,
   "speed": 1
 }
 
 var mage = {
   "name": "mage",
-  "health": 7,
+  "health": 5,
   "stamina": 3,
-  "attack": 1,
-  "defence": 2,
-  "speed": 2
+  "strength": 0,
+  "speed": 1
 }
 
 var thief = {
   "name": "thief",
   "health": 7,
   "stamina": 3,
-  "attack": 1,
-  "defence": 2,
+  "strength": 1,
   "speed": 2
 }
 
 var priest = {
   "name": "priest",
-  "health": 7,
+  "health": 5,
   "stamina": 3,
-  "attack": 1,
-  "defence": 2,
-  "speed": 2
+  "strength": 0,
+  "speed": 1
 }
 
 module.exports = {
@@ -4730,15 +4726,15 @@ var morphdom = require('morphdom')
 var reducer = require('./reducer')
 
 module.exports = () => {
-  var app = document.createElement('div')
-  document.querySelector('main').appendChild(app)
+  var characterStats = document.createElement('div')
+  document.getElementById('character-stats').appendChild(characterStats)
 
   var initialState = { title: 'test' }
   var store = redux.createStore(reducer, initialState)
 
   store.subscribe(() => {
     var view = render(store.getState(), store.dispatch)
-    morphdom(app, view)
+    morphdom(characterStats, view)
   })
 
   function render (state, dispatch) {
@@ -4749,7 +4745,7 @@ module.exports = () => {
 }
 
 },{"./reducer":39,"./view":40,"morphdom":22,"redux":30}],39:[function(require,module,exports){
-var data = require('./data')
+var data = require('./classes')
 
 module.exports = (state, action) => {
   var newState = require('clone')(state)
@@ -4765,14 +4761,13 @@ module.exports = (state, action) => {
   }
 }
 
-},{"./data":37,"clone":5}],40:[function(require,module,exports){
+},{"./classes":37,"clone":5}],40:[function(require,module,exports){
 var html = require('yo-yo')
 
 module.exports = (state, dispatch) => {
   return html`
     <div id="character-stat-container">
       ${standardStats()}
-      ${classSwitch()}
       ${bindListener()}
     </div>
   `
@@ -4783,7 +4778,10 @@ module.exports = (state, dispatch) => {
         <div id="standard-stats">
           <h2>health: ${state.class.health}</h2>
           <h2>stamina: ${state.class.stamina}</h2>
-          <input type="submit" value="->"/>
+          <h2>strength: ${state.class.strength}</h2>
+          <h2>speed: ${state.class.speed}</h2>
+          <br>
+          <input type="submit" value="create character"/>
         </div>
       `
     }

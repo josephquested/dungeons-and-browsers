@@ -9,6 +9,12 @@ body {
   color: white;
 }
 
+input {
+    background-color: white;
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+}
+
 h1 {
   font-size: 18;
 }
@@ -44,6 +50,13 @@ td {
 .character-container {
   text-align: center;
   border: 1px solid white;
+}
+
+/* --- character --- */
+#character-form {
+  margin-top: 100px;
+  margin: 0 auto;
+  width: 50%;
 }
 
 /* --- link --- */
