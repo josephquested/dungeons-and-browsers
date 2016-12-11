@@ -13,9 +13,17 @@ module.exports = (state, dispatch) => {
       return html`
         <div id="standard-stats">
           <h2>health: ${state.class.health}</h2>
+          <input type="hidden" name="health" value=${state.class.health}/>
+
           <h2>stamina: ${state.class.stamina}</h2>
+          <input type="hidden" name="stamina" value=${state.class.stamina}/>
+
           <h2>strength: ${state.class.strength}</h2>
+          <input type="hidden" name="strength" value=${state.class.strength}/>
+
           <h2>speed: ${state.class.speed}</h2>
+          <input type="hidden" name="speed" value=${state.class.speed}/>
+
           <br>
           <input type="submit" value="create character"/>
         </div>

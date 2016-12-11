@@ -25,8 +25,6 @@ app.use('/party', require('./routes/party'))
 app.use('/logup', require('./routes/logup'))
 
 // app.get('/character', require('./routes/character'))
-app.get('/character', (req, res) => {
-  res.render("character")
-})
+app.use('/character', require('./routes/character'))
 
 module.exports = app
