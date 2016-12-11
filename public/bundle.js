@@ -4681,6 +4681,50 @@ module.exports = [
 ]
 
 },{}],37:[function(require,module,exports){
+var warrior = {
+  "name": "warrior",
+  "health": 10,
+  "stamina": 3,
+  "attack": 3,
+  "defence": 3,
+  "speed": 1
+}
+
+var mage = {
+  "name": "mage",
+  "health": 7,
+  "stamina": 3,
+  "attack": 1,
+  "defence": 2,
+  "speed": 2
+}
+
+var thief = {
+  "name": "thief",
+  "health": 7,
+  "stamina": 3,
+  "attack": 1,
+  "defence": 2,
+  "speed": 2
+}
+
+var priest = {
+  "name": "priest",
+  "health": 7,
+  "stamina": 3,
+  "attack": 1,
+  "defence": 2,
+  "speed": 2
+}
+
+module.exports = {
+  warrior,
+  mage,
+  thief,
+  priest
+}
+
+},{}],38:[function(require,module,exports){
 var redux = require('redux')
 var morphdom = require('morphdom')
 var reducer = require('./reducer')
@@ -4704,13 +4748,15 @@ module.exports = () => {
   store.dispatch({type: 'INIT'})
 }
 
-},{"./reducer":38,"./view":39,"morphdom":22,"redux":30}],38:[function(require,module,exports){
+},{"./reducer":39,"./view":40,"morphdom":22,"redux":30}],39:[function(require,module,exports){
+var data = require('./data')
+
 module.exports = (state, action) => {
   var newState = require('clone')(state)
 
   switch (action.type) {
     case 'CHANGE_CLASS':
-      newState.class = action.payload
+      newState.class = data[action.payload]
       return newState
     break
 
@@ -4719,94 +4765,65 @@ module.exports = (state, action) => {
   }
 }
 
-},{"clone":5}],39:[function(require,module,exports){
+},{"./data":37,"clone":5}],40:[function(require,module,exports){
 var html = require('yo-yo')
 
 module.exports = (state, dispatch) => {
   return html`
-    <div>
-      <h1 id='page-header'>create character</h1>
-      <hr id='page-rule'>
-
-      <div id="character-form">
-        <form action="/character" method="post">
-          <label>name</label>
-          <input type="text" name="name"/>
-
-          <select onchange=${changeClass} id="class-select" name="class">
-            <option selected disabled value="">class</option>
-            <option value="warrior">warrior</option>
-            <option value="mage">mage</option>
-            <option value="theif">theif</option>
-            <option value="priest">priest</option>
-          </select>
-          <br>
-
-          <div id="character-stat-container">
-            ${classSwitch()}
-          </div>
-
-          <input type="submit" value="->"/>
-        </form>
-      </div>
+    <div id="character-stat-container">
+      ${standardStats()}
+      ${classSwitch()}
+      ${bindListener()}
     </div>
   `
 
-  function changeClass (e) {
-    dispatch({type: "CHANGE_CLASS", payload: e.target.value})
-  }
-
-  function classSwitch () {
-    switch (state.class) {
-      case 'warrior':
-        return warriorHTML()
-      break
-
-      case 'mage':
-        return mageHTML()
-      break
-
-      default:
-        return
+  function standardStats () {
+    if (state.class) {
+      return html`
+        <div id="standard-stats">
+          <h2>health: ${state.class.health}</h2>
+          <h2>stamina: ${state.class.stamina}</h2>
+          <input type="submit" value="->"/>
+        </div>
+      `
     }
   }
 
-  function warriorHTML () {
-    return html`
-      <div>
-        <input id="health-slider" type="range" name="points" min="1" max="10">
-        <h2>health: <h2 id='health-label'>5</h2></h2>
-      </div>
-    `
+  function classSwitch () {
+    if (state.class) {
+      switch (state.class.name) {
+        case 'warrior':
+          // return warriorHTML()
+        break
+
+        case 'mage':
+          // return mageHTML()
+        break
+
+        default:
+        return
+      }
+    }
   }
 
-  function mageHTML () {
-    return html`
-      <div>
-        <input id="health-slider" type="range" name="points" min="1" max="10">
-        <h2>health: <h2 id='health-label'>5</h2></h2>
-      </div>
-    `
+  function bindListener () {
+    document.getElementById('character-form').addEventListener('change', (e) => {
+      dispatch({ type: "CHANGE_CLASS", payload: e.target.value })
+    })
   }
 }
 
-// function bindValueLabel (element, label) {
-//   element.addEventListener("input", (e) => {
-//     label.innerHTML = element.value
-//   })
-// }
-
-},{"yo-yo":35}],40:[function(require,module,exports){
+},{"yo-yo":35}],41:[function(require,module,exports){
 module.exports = () => {
   console.log('home')
 }
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 module.exports = () => {
   console.log('play')
 }
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 var route = window.location.pathname.substr(1)
 
 switch (route) {
@@ -4822,4 +4839,4 @@ switch (route) {
     return require('./pages/index')()
 }
 
-},{"./pages/character/index":37,"./pages/index":40,"./pages/play":41}]},{},[42]);
+},{"./pages/character/index":38,"./pages/index":41,"./pages/play":42}]},{},[43]);
