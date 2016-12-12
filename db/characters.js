@@ -16,9 +16,10 @@ module.exports = {
     .then(res => callback(null, res))
   },
 
-  add: (data, callback) => {
+  add: (character, callback) => {
+    character.data = JSON.stringify(character.data)
     knex('characters')
-    .insert({ userid: data.userid, data: data.data })
+    .insert({ userid: character.userid, data: character.data })
     .then(res => callback(null, res))
   }
 }

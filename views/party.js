@@ -26,30 +26,11 @@ function renderCharacter (character) {
     <h2>${characterData.name}</h2>
     <h3> --- ${characterData.class} --- </h3>
     <h4>health: ${characterData.health}</h4>
-    ${classSwitch(characterData)}
+    <h4>stamina: ${characterData.stamina}</h4>
+    <h4>strength: ${characterData.strength}</h4>
+    <h4>speed: ${characterData.speed}</h4>
   `
   return html += `</div>`
-}
-
-function classSwitch (characterData) {
-  switch (characterData.class) {
-    case 'warrior':
-      return warriorData(characterData)
-    case 'mage':
-      return mageData(characterData)
-  }
-}
-
-function warriorData (warrior) {
-  return `
-    <h4>(warrior data)</h4>
-  `
-}
-
-function mageData (mage) {
-  return `
-    <h4>(mage data)</h4>
-  `
 }
 
 // --- empty slots --- //

@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
       if (characters.length == 4) {
         res.render('play')
       } else {
-        res.render('party', ({ characters }))
+        res.redirect('/party')
       }
     })
   } else {

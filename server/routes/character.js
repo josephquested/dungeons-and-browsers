@@ -2,23 +2,26 @@ var router = require('express').Router()
 var db = require('../../db/db')
 
 router.get('/', (req, res) => {
-  res.render("character")
+  res.render('character')
 })
 
 router.post('/', (req, res) => {
-  console.log("CHARACTER REQ: ", req.body);
-  // db.users.findByUsername(req.body.username, (user) => {
-  //   if (!user) {
-  //     hasher.hash(req.body.password, (hashedPassword) => {
-  //       db.users.add({username: req.body.username, password: hashedPassword}, (dbRes) => {
-  //         res.redirect('/')
-  //       })
-  //     })
-  //   } else {
-  //     res.redirect('/')
-  //   }
-  // })
-  res.redirect('/character')
+  if (req.user) {
+    db.characters.findByUserId(req.user.id, (err, characters) => {
+      if (characters.length < 4) {
+        var character = { userid: req.user.id, data: req.body }
+        db.characters.add(character, (err, dbRes) => {
+          res.redirect('/party')
+        })
+
+      } else {
+        res.redirect('/party')
+      }
+    })
+
+  } else {
+    res.redirect('/')
+  }
 })
 
 module.exports = router

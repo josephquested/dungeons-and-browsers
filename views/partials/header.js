@@ -12,7 +12,7 @@ function render () {
 }
 
 function renderNavs () {
-  var navs = ['PLAY', 'PARTY', 'QUIT']
+  var navs = ['GAME', 'PARTY', 'QUIT']
   var html = `<a href="/">HOME</a>`
   navs.forEach((nav) => {
     html += `<a href="/${nav.toLowerCase()}">${nav}</a>`

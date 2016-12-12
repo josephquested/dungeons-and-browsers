@@ -20,7 +20,7 @@ app.use(passport.session())
 app.use('/', require('./routes/index'))
 app.use('/login', require('./routes/login'))
 app.use('/quit', require('./routes/quit'))
-app.use('/play', require('./routes/play'))
+app.use('/game', require('./routes/game'))
 app.use('/party', require('./routes/party'))
 app.use('/logup', require('./routes/logup'))
 
