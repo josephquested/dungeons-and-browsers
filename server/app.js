@@ -17,10 +17,14 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // --- routes --- //
-app.get('/', (req, res) => res.render('home', { user: req.user } ))
-app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), (req, res) => res.redirect('/'))
+app.use('/', require('./routes/index'))
+app.use('/login', require('./routes/login'))
 app.use('/quit', require('./routes/quit'))
-app.use('/play', require('./routes/play'))
+app.use('/game', require('./routes/game'))
+app.use('/party', require('./routes/party'))
 app.use('/logup', require('./routes/logup'))
+
+// app.get('/character', require('./routes/character'))
+app.use('/character', require('./routes/character'))
 
 module.exports = app

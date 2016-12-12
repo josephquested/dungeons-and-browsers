@@ -9,6 +9,12 @@ body {
   color: white;
 }
 
+input {
+    background-color: white;
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+}
+
 h1 {
   font-size: 18;
 }
@@ -27,21 +33,30 @@ span, a {
   margin-right: 40px;
 }
 
-/* --- table --- */
+/* --- play --- */
 
 table {
   margin-right: center;
   margin-left: center;
 }
 
-hr {
-  margin-bottom: 10px;
-}
-
 td {
   width: 48px;
   height: 48px;
   background-color: white;
+}
+
+/* --- party --- */
+.character-container {
+  text-align: center;
+  border: 1px solid white;
+}
+
+/* --- character --- */
+#character-form {
+  margin-top: 100px;
+  margin: 0 auto;
+  width: 50%;
 }
 
 /* --- link --- */
@@ -71,4 +86,13 @@ a:active {
 #main-wrapper {
   display: flex;
   flex-wrap: wrap;
+}
+
+#page-header {
+  text-align: center;
+  font-size: 40px;
+}
+
+#page-rule {
+  width: 50%;
 }
