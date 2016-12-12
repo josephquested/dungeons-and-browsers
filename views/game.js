@@ -15,15 +15,14 @@ function render (data) {
 
   function renderGames (data) {
     var html = ``
-    // io.games.forEach((game) => {
-    //   html =+ `
-    //     <div class="centered-container">
-    //       <h3>${game.hostname}</h3>
-    //     </div>
-    //   `
-    // })
-    console.log("io games:");
-    console.log(io.games);
+    io.games.forEach((game) => {
+      html += `
+        <div class="centered-container">
+          <h3>${game.hostname}'s game</h3>
+          <a href='/game/${game.id}'>join</a>
+        </div>
+      `
+    })
     return html
   }
 }

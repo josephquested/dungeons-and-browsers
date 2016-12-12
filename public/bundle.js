@@ -12461,12 +12461,8 @@ module.exports = [
 },{}],88:[function(require,module,exports){
 (function (global){
 module.exports = () => {
-  // console.log('existing io,' global.io);
-
-  if (!global.io) {
-    console.log('connecting to io!');
-    global.io = require('socket.io-client')()
-  }
+  var io = global.io = require('socket.io-client')()
+  module.exports = io
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
@@ -12610,27 +12606,13 @@ module.exports = (state, dispatch) => {
 }
 
 },{"yo-yo":86}],93:[function(require,module,exports){
-(function (global){
 module.exports = () => {
-  require('../../connect-io')()
-
-  console.log('io in index:');
-  console.log(global.io);
+  var io = require('../../connect-io')()
 }
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../../connect-io":88}],94:[function(require,module,exports){
-(function (global){
-module.exports = () => {
-  require('../../connect-io')()
-  var io = global.io
-
-  console.log('io in start:');
-  console.log(global.io);
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../connect-io":88}],95:[function(require,module,exports){
+arguments[4][93][0].apply(exports,arguments)
+},{"../../connect-io":88,"dup":93}],95:[function(require,module,exports){
 var route = window.location.pathname.split('/')
 
 if (route[2]) {

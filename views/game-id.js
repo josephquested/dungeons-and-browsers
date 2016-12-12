@@ -4,7 +4,7 @@ var generateBoard = require('./partials/empty-board')
 function render (data) {
   return `
     ${header()}
-    <h1>${data.hostname}'s game</h1>
+    <h1>${data.user.username}'s game</h1>
     <div id="main-wrapper">
       ${generateBoard(12)}
       <ul>
@@ -15,7 +15,6 @@ function render (data) {
       <li>thing</li>
       <li>thing</li>
       </ul>
-      <p>test</p>
     </div>
   `
 }

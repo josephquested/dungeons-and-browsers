@@ -4,7 +4,8 @@ module.exports = {
     connection: {
       // filename: './dev.sqlite3'
       filename: './db/dev.sqlite3'
-    }
+    },
+    useNullAsDefault: true
   },
 
   staging: {
