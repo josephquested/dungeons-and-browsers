@@ -23,8 +23,6 @@ app.use('/quit', require('./routes/quit'))
 app.use('/game', require('./routes/game'))
 app.use('/party', require('./routes/party'))
 app.use('/logup', require('./routes/logup'))
-
-// app.get('/character', require('./routes/character'))
 app.use('/character', require('./routes/character'))
 
 module.exports = app

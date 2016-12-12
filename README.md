@@ -1,9 +1,3 @@
-get('./play')
-  render(game)
-
-play.js == lobby
-
-opens socket connection
 renders list of open games from socket.games.open
 
 button for create new game

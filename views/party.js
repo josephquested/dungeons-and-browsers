@@ -1,5 +1,4 @@
 var header = require('./partials/header')
-var generateBoard = require('./partials/empty-board')
 
 function render (data) {
   return `
@@ -22,7 +21,7 @@ function renderCharacters (characters) {
 function renderCharacter (character) {
   var characterData = JSON.parse(character.data)
   var html = `
-  <div class="character-container">
+  <div class="centered-container">
     <h2>${characterData.name}</h2>
     <h3> --- ${characterData.class} --- </h3>
     <h4>health: ${characterData.health}</h4>
@@ -44,7 +43,7 @@ function renderEmptySlots (characters) {
 }
 
 var emptySlot = `
-  <div class="character-container">
+  <div class="centered-container">
     <a href="/character">empty slot</a>
   </div>
 `
