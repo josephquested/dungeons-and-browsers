@@ -8,5 +8,6 @@ module.exports = (host) => {
   }
 
   io.games.push(game)
+  io.emit('receive-games', io.games)
   return game.id
 }

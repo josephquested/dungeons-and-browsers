@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
   if (req.user) {
     db.characters.findByUserId(req.user.id, (err, characters) => {
       if (characters.length == 4) {
-        res.render('game-id', { user: req.user, gameid: req.params.id })
+        res.render('game-id', { username: req.user.username, gameid: req.params.id })
       } else {
         res.redirect('/party')
       }

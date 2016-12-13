@@ -1,21 +1,16 @@
 var header = require('./partials/header')
 var generateBoard = require('./partials/empty-board')
+var stash = require('html-stash').pack
 
 function render (data) {
-  var socketData = getSocketData(data)
-
   return `
     ${header()}
     <div id="main-wrapper">
       ${generateBoard(12)}
       <main></main>
+      ${stash(data)}
     </div>
   `
-}
-
-function getSocketData (data) {
-  var gameData = io.games.find((game) => game.id == data.gameid)
-  return gameData
 }
 
 module.exports = render
