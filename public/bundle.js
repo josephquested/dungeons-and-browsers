@@ -12629,7 +12629,7 @@ module.exports = () => {
   var app = document.createElement('div')
   document.querySelector('main').appendChild(app)
 
-  var initialState = { hostname: '___', guestname: '___'}
+  var initialState = { gameData: { hostname: '___', guestname: '___' } }
   var store = redux.createStore(reducer, initialState)
 
   store.subscribe(() => {
@@ -12670,9 +12670,6 @@ module.exports = (state, action) => {
 
     case 'START_GAME':
       newState.gameData = action.payload
-      newState.gameData.running = true
-      console.log('game running!');
-      console.log(newState.gameData);
       return newState
     break
 
@@ -12781,6 +12778,10 @@ module.exports = (state, dispatch) => {
         <br>
       </div>
     `
+  }
+
+  function renderGameState () {
+
   }
 }
 

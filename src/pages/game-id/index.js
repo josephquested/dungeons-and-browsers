@@ -7,7 +7,7 @@ module.exports = () => {
   var app = document.createElement('div')
   document.querySelector('main').appendChild(app)
 
-  var initialState = { hostname: '___', guestname: '___'}
+  var initialState = { gameData: { hostname: '___', guestname: '___' } }
   var store = redux.createStore(reducer, initialState)
 
   store.subscribe(() => {

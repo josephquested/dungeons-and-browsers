@@ -9,9 +9,6 @@ module.exports = (state, action) => {
 
     case 'START_GAME':
       newState.gameData = action.payload
-      newState.gameData.running = true
-      console.log('game running!');
-      console.log(newState.gameData);
       return newState
     break
 

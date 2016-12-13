@@ -21,6 +21,7 @@ module.exports = (connection) => {
       var game = io.games.find((game) => game.id == req.gameid)
       if (!game.guestname) {
         game.guestname = req.guestname
+        game.running = true
         io.to(req.gameid).emit('start-game', game)
       }
     })

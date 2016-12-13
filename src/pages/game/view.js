@@ -16,4 +16,8 @@ module.exports = (state, dispatch) => {
       </div>
     `
   }
+
+  function renderGameState () {
+
+  }
 }
