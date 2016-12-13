@@ -2,6 +2,8 @@ var router = require('express').Router()
 var createGame = require('../socket/create-game')
 var db = require('../../db/db')
 
+// --- get --- //
+
 router.get('/', (req, res) => {
   if (req.user) {
     db.characters.findByUserId(req.user.id, (err, characters) => {
@@ -30,12 +32,13 @@ router.get('/:id', (req, res) => {
   }
 })
 
+// --- post --- //
+
 router.post('/', (req, res) => {
   if (req.user) {
     db.characters.findByUserId(req.user.id, (err, characters) => {
       if (characters.length == 4) {
         var gameid = createGame({id: req.user.id, name: req.user.username})
-        console.log("redirecting to games ... ");
         res.redirect(`/game/${gameid}`)
       } else {
         res.redirect('/party')

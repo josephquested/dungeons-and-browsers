@@ -12459,14 +12459,6 @@ module.exports = [
 ]
 
 },{}],88:[function(require,module,exports){
-(function (global){
-module.exports = () => {
-  var io = global.io = require('socket.io-client')()
-  module.exports = io
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"socket.io-client":67}],89:[function(require,module,exports){
 var warrior = {
   "name": "warrior",
   "health": 10,
@@ -12506,7 +12498,7 @@ module.exports = {
   priest
 }
 
-},{}],90:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 var redux = require('redux')
 var morphdom = require('morphdom')
 var reducer = require('./reducer')
@@ -12530,7 +12522,7 @@ module.exports = () => {
   store.dispatch({type: 'INIT'})
 }
 
-},{"./reducer":91,"./view":92,"morphdom":53,"redux":65}],91:[function(require,module,exports){
+},{"./reducer":90,"./view":91,"morphdom":53,"redux":65}],90:[function(require,module,exports){
 var data = require('./classes')
 
 module.exports = (state, action) => {
@@ -12547,7 +12539,7 @@ module.exports = (state, action) => {
   }
 }
 
-},{"./classes":89,"clone":10}],92:[function(require,module,exports){
+},{"./classes":88,"clone":10}],91:[function(require,module,exports){
 var html = require('yo-yo')
 
 module.exports = (state, dispatch) => {
@@ -12605,28 +12597,96 @@ module.exports = (state, dispatch) => {
   }
 }
 
-},{"yo-yo":86}],93:[function(require,module,exports){
-module.exports = () => {
-  var io = require('../../connect-io')()
+},{"yo-yo":86}],92:[function(require,module,exports){
+var redux = require('redux')
+var morphdom = require('morphdom')
+var reducer = require('./reducer')
+
+module.exports = (roomid) => {
+  var app = document.createElement('div')
+  document.querySelector('main').appendChild(app)
+
+  var initialState = { hostname: '___', guestname: '___'}
+  var store = redux.createStore(reducer, initialState)
+
+  store.subscribe(() => {
+    var view = render(store.getState(), store.dispatch)
+    morphdom(app, view)
+  })
+
+  function render (state, dispatch) {
+    return require('./view')(state, store.dispatch)
+  }
+
+  // --- sockets --- //
+
+  var io = require('socket.io-client')()
+  io.emit('request-game-data', roomid)
+
+  io.on('receive-game-data', (data) => {
+    store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
+  })
 }
 
-},{"../../connect-io":88}],94:[function(require,module,exports){
-arguments[4][93][0].apply(exports,arguments)
-},{"../../connect-io":88,"dup":93}],95:[function(require,module,exports){
+},{"./reducer":93,"./view":94,"morphdom":53,"redux":65,"socket.io-client":67}],93:[function(require,module,exports){
+module.exports = (state, action) => {
+  var newState = require('clone')(state)
+
+  switch (action.type) {
+    case 'UPDATE_GAME_DATA':
+      newState.gameData = action.payload
+      return newState
+    break
+
+    default:
+      return newState
+  }
+}
+
+},{"clone":10}],94:[function(require,module,exports){
+var html = require('yo-yo')
+
+module.exports = (state, dispatch) => {
+  return html`
+    <div id="side-bar">
+      ${renderHeader()}
+    </div>
+  `
+
+  function renderHeader () {
+    if (!state.gameData.guestName) {
+      return html`
+          <div>
+            <h2>waiting for opponent</h2><h2 id='loading-dots'>.</h2>
+            ${animateLoading()}
+          </div>
+        `
+    } else {
+      return html`<h2 id="game-host-header">${state.gameData.hostname} -VS- ${state.gameData.guestname}</h2>`
+    }
+  }
+
+  function animateLoading () {
+    var str = '.'
+    setInterval(() => {
+      var str = document.getElementById('loading-dots').innerHTML
+      str.length == 20 ? str = '.' : str += '.'
+      document.getElementById('loading-dots').innerHTML = str
+    }, 500)
+  }
+}
+
+},{"yo-yo":86}],95:[function(require,module,exports){
 var route = window.location.pathname.split('/')
 
 if (route[2]) {
-  return require('./pages/game/start')()
+  return require('./pages/game/index')(route[2])
 }
 
 switch (route[1]) {
-  case 'game':
-    return require('./pages/game/index')()
-  break
-
   case 'character':
     return require('./pages/character/index')()
   break
 }
 
-},{"./pages/character/index":90,"./pages/game/index":93,"./pages/game/start":94}]},{},[95]);
+},{"./pages/character/index":89,"./pages/game/index":92}]},{},[95]);

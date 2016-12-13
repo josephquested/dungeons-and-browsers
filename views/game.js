@@ -4,8 +4,7 @@ function render (data) {
   return `
     ${header()}
     <h1 id='page-header'>games</h1>
-
-    <div id="create-gage-form">
+    <div class='centered'>
       <form action="/game" method="post">
         <input type="submit" value="create game"/>
       </form>

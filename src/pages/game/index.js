@@ -1,3 +1,29 @@
-module.exports = () => {
-  var io = require('../../connect-io')()
+var redux = require('redux')
+var morphdom = require('morphdom')
+var reducer = require('./reducer')
+
+module.exports = (roomid) => {
+  var app = document.createElement('div')
+  document.querySelector('main').appendChild(app)
+
+  var initialState = { hostname: '___', guestname: '___'}
+  var store = redux.createStore(reducer, initialState)
+
+  store.subscribe(() => {
+    var view = render(store.getState(), store.dispatch)
+    morphdom(app, view)
+  })
+
+  function render (state, dispatch) {
+    return require('./view')(state, store.dispatch)
+  }
+
+  // --- sockets --- //
+
+  var io = require('socket.io-client')()
+  io.emit('request-game-data', roomid)
+
+  io.on('receive-game-data', (data) => {
+    store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
+  })
 }

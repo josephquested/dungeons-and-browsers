@@ -3,10 +3,13 @@ module.exports = (connection) => {
   io.games = []
 
   io.on('connection', (socket) => {
-    console.log(`socket ${socket.id} connected`)
+    socket.on('join', (gameid) => {
+      socket.join(gameid)
+    })
 
-    socket.on('join', (roomID) => {
-      socket.join(roomID)
+    socket.on('request-game-data', (gameid) => {
+      var game = io.games.find((game) => game.id == gameid)
+      io.to(socket.id).emit('receive-game-data', game)
     })
   })
 

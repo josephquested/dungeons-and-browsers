@@ -6,17 +6,9 @@ function render (data) {
 
   return `
     ${header()}
-    <h1>${socketData.hostname}'s game</h1>
     <div id="main-wrapper">
       ${generateBoard(12)}
-      <ul>
-      <li>thing</li>
-      <li>thing</li>
-      <li>thing</li>
-      <li>thing</li>
-      <li>thing</li>
-      <li>thing</li>
-      </ul>
+      <main></main>
     </div>
   `
 }
