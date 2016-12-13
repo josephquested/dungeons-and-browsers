@@ -6,7 +6,7 @@ module.exports = (roomid) => {
   var app = document.createElement('div')
   document.querySelector('main').appendChild(app)
 
-  var initialState = { games: [] }
+  var initialState = { hostname: '___', guestname: '___'}
   var store = redux.createStore(reducer, initialState)
 
   store.subscribe(() => {
@@ -21,9 +21,9 @@ module.exports = (roomid) => {
   // --- sockets --- //
 
   var io = require('socket.io-client')()
-  io.emit('request-games')
+  io.emit('request-game-data', roomid)
 
-  io.on('receive-games', (data) => {
-    store.dispatch({type: 'UPDATE_GAMES', payload: data})
+  io.on('receive-game-data', (data) => {
+    store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
   })
 }

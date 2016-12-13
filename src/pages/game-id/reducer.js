@@ -2,8 +2,8 @@ module.exports = (state, action) => {
   var newState = require('clone')(state)
 
   switch (action.type) {
-    case 'UPDATE_GAMES':
-      newState.games = action.payload
+    case 'UPDATE_GAME_DATA':
+      newState.gameData = action.payload
       return newState
     break
 

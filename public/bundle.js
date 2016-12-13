@@ -12677,16 +12677,86 @@ module.exports = (state, dispatch) => {
 }
 
 },{"yo-yo":86}],95:[function(require,module,exports){
+var redux = require('redux')
+var morphdom = require('morphdom')
+var reducer = require('./reducer')
+
+module.exports = (roomid) => {
+  var app = document.createElement('div')
+  document.querySelector('main').appendChild(app)
+
+  var initialState = { games: [] }
+  var store = redux.createStore(reducer, initialState)
+
+  store.subscribe(() => {
+    var view = render(store.getState(), store.dispatch)
+    morphdom(app, view)
+  })
+
+  function render (state, dispatch) {
+    return require('./view')(state, store.dispatch)
+  }
+
+  // --- sockets --- //
+
+  var io = require('socket.io-client')()
+  io.emit('request-games')
+
+  io.on('receive-games', (data) => {
+    store.dispatch({type: 'UPDATE_GAMES', payload: data})
+  })
+}
+
+},{"./reducer":96,"./view":97,"morphdom":53,"redux":65,"socket.io-client":67}],96:[function(require,module,exports){
+module.exports = (state, action) => {
+  var newState = require('clone')(state)
+
+  switch (action.type) {
+    case 'UPDATE_GAMES':
+      newState.games = action.payload
+      return newState
+    break
+
+    default:
+      return newState
+  }
+}
+
+},{"clone":10}],97:[function(require,module,exports){
+var html = require('yo-yo')
+
+module.exports = (state, dispatch) => {
+  return html`
+    <div id='game-list'>
+      ${state.games.map(renderGame)}
+    </div>
+  `
+
+  function renderGame (game) {
+    return html`
+      <div class="centered-container">
+        <h2>${game.hostname}</h2>
+        <a href="/game/${game.id}">join game</a>
+        <br>
+      </div>
+    `
+  }
+}
+
+},{"yo-yo":86}],98:[function(require,module,exports){
 var route = window.location.pathname.split('/')
 
 if (route[2]) {
-  return require('./pages/game/index')(route[2])
+  return require('./pages/game-id/index')(route[2])
 }
 
 switch (route[1]) {
   case 'character':
     return require('./pages/character/index')()
   break
+
+  case 'game':
+    return require('./pages/game/index')()
 }
 
-},{"./pages/character/index":89,"./pages/game/index":92}]},{},[95]);
+},{"./pages/character/index":89,"./pages/game-id/index":92,"./pages/game/index":95}]},{},[98]);
