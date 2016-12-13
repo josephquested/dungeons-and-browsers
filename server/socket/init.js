@@ -13,11 +13,17 @@ module.exports = (connection) => {
 
     socket.on('request-game-data', (gameid) => {
       var game = io.games.find((game) => game.id == gameid)
-      io.to(socket.id).emit('receive-game-data', game)
+      socket.join(gameid)
+      io.to(gameid).emit('receive-game-data', game)
     })
 
-    socket.on('join-game', (gameData) => {
-      console.log(`${gameData.guestname} wants to join game ${gameData.gameid}!`)
+    socket.on('join-game', (req) => {
+      console.log(`${req.guestname} wants to join game ${req.gameid}!`)
+      var game = io.games.find((game) => game.id == req.gameid)
+      if (!game.guestname) {
+        game.guestname = req.guestname
+        io.to(req.gameid).emit('start-game')
+      }
     })
   })
 

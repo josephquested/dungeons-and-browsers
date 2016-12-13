@@ -12652,6 +12652,11 @@ module.exports = () => {
       io.emit("join-game", { guestname: stash.username, gameid: stash.gameid })
     }
   })
+
+  io.on('start-game', () => {
+    // store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
+    console.log('game starting!!');
+  })
 }
 
 },{"./reducer":94,"./view":95,"html-stash":37,"morphdom":54,"redux":66,"socket.io-client":68}],94:[function(require,module,exports){
