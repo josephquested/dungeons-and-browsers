@@ -12653,9 +12653,8 @@ module.exports = () => {
     }
   })
 
-  io.on('start-game', () => {
-    // store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
-    console.log('game starting!!');
+  io.on('start-game', (data) => {
+    store.dispatch({type: 'START_GAME', payload: data})
   })
 }
 
@@ -12666,6 +12665,14 @@ module.exports = (state, action) => {
   switch (action.type) {
     case 'UPDATE_GAME_DATA':
       newState.gameData = action.payload
+      return newState
+    break
+
+    case 'START_GAME':
+      newState.gameData = action.payload
+      newState.gameData.running = true
+      console.log('game running!');
+      console.log(newState.gameData);
       return newState
     break
 
@@ -12685,7 +12692,7 @@ module.exports = (state, dispatch) => {
   `
 
   function renderHeader () {
-    if (!state.gameData.guestName) {
+    if (!state.gameData.running) {
       return html`
           <div>
             <h2>waiting for opponent</h2><h2 id='loading-dots'>.</h2>
@@ -12699,10 +12706,13 @@ module.exports = (state, dispatch) => {
 
   function animateLoading () {
     var str = '.'
-    setInterval(() => {
-      var str = document.getElementById('loading-dots').innerHTML
-      str.length == 20 ? str = '.' : str += '.'
-      document.getElementById('loading-dots').innerHTML = str
+    var loading = setInterval(() => {
+      var str = document.getElementById('loading-dots')
+      if (str) {
+        str = str.innerHTML
+        str.length == 20 ? str = '.' : str += '.'
+        document.getElementById('loading-dots').innerHTML = str
+      }
     }, 500)
   }
 }

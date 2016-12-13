@@ -8,7 +8,7 @@ module.exports = (state, dispatch) => {
   `
 
   function renderHeader () {
-    if (!state.gameData.guestName) {
+    if (!state.gameData.running) {
       return html`
           <div>
             <h2>waiting for opponent</h2><h2 id='loading-dots'>.</h2>
@@ -22,10 +22,13 @@ module.exports = (state, dispatch) => {
 
   function animateLoading () {
     var str = '.'
-    setInterval(() => {
-      var str = document.getElementById('loading-dots').innerHTML
-      str.length == 20 ? str = '.' : str += '.'
-      document.getElementById('loading-dots').innerHTML = str
+    var loading = setInterval(() => {
+      var str = document.getElementById('loading-dots')
+      if (str) {
+        str = str.innerHTML
+        str.length == 20 ? str = '.' : str += '.'
+        document.getElementById('loading-dots').innerHTML = str
+      }
     }, 500)
   }
 }

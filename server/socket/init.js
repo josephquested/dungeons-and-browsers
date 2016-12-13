@@ -18,11 +18,10 @@ module.exports = (connection) => {
     })
 
     socket.on('join-game', (req) => {
-      console.log(`${req.guestname} wants to join game ${req.gameid}!`)
       var game = io.games.find((game) => game.id == req.gameid)
       if (!game.guestname) {
         game.guestname = req.guestname
-        io.to(req.gameid).emit('start-game')
+        io.to(req.gameid).emit('start-game', game)
       }
     })
   })

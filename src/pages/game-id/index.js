@@ -31,8 +31,7 @@ module.exports = () => {
     }
   })
 
-  io.on('start-game', () => {
-    // store.dispatch({type: 'UPDATE_GAME_DATA', payload: data})
-    console.log('game starting!!');
+  io.on('start-game', (data) => {
+    store.dispatch({type: 'START_GAME', payload: data})
   })
 }
